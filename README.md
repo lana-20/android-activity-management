@@ -83,6 +83,8 @@ Back to this list of activities, what else can we use? There is one called <code
 
         app_act2 = '.text.Marquee'
 
+<img width="600" src="https://user-images.githubusercontent.com/70295997/223917311-27df9629-5556-49e7-9711-7e713cd149ed.png">
+
 Now that we have our activities defined, let's do something with them! Immediately after installing the ApkDemos app, let's try and start the first activity:
 
         driver.start_activity(app_id, app_act1)
@@ -102,7 +104,7 @@ Let's do it again, but this time with the second activity.
 
 And, we're done. All we're doing here is essentially launching two activities buried deep within this app. But we're launching them directly. We don't have to navigate through the app in order to get immediately to these screens. This is a powerful technique for speeding up your Android tests.
 
-Run the script to verify it works as expected. First, TheApp loads, then the new ApiDemos app is installed. Then we get to the TouchPaint activity. And after it stays up for a second, we get to the text marquee screen. 
+Run the script to verify it works as expected. First, TheApp loads, then the new ApiDemos app is installed. Then the TouchPaint activity is launched. And after it stays up for a second, we get to the text marquee screen. Notice that it stays on this marquee screen for more than a second, that because our AUT was TheApp not ApiDemos. And we never told ApiDemos to stop running, so it does stay up and running.
 
 There are several use cases for these sorts of features, but one of the most important is the ability to get directly to parts of the app we want to test.
 
