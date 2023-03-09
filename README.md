@@ -34,7 +34,7 @@ There are a couple more optional parameters you can explore in the docs, but the
 
 Let's talk about two other driver properties that have to do with packages and activities. The first is <code>driver.current_activity</code>, which is a property that, when retrieved, will give you the name of the currently running activity. You could use this to do different things in your script depending on where you've got to in your app, or just to use Appium itself to find out what the activity name is. And the second is <code>driver.current_package</code>, which gives you the package ID of the currently running app.
 
-Practical Example:
+[Practical Example:](https://github.com/lana-20/android-activity-management/blob/main/activities_android.py)
 
 I make sure to install the ApiDemos app at the beginning of the test. Then I want to launch the app at a specific Activity, so 'll head over to my terminal to run the command mentioned earlier to figure out what activities are available:
 
