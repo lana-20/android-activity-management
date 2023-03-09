@@ -55,6 +55,12 @@ Once we've got our package and activity name, we're pretty much ready to go. We 
 
 There are a couple more optional parameters you can explore in the docs, but these are the only ones you're likely to need to use.
 
+| Activity Properties |  |
+| --- | ----|
+| <code>driver.current_activity</code> | Get the activity name of the currently-running activity. |
+| <code>driver.current_package</code> | Get the package ID of the currently running app. |
+
+
 Let's talk about two other driver properties that have to do with packages and activities. The first is <code>driver.current_activity</code>, which is a property that, when retrieved, will give you the name of the currently running activity. You could use this to do different things in your script depending on where you've got to in your app, or just to use Appium itself to find out what the activity name is. And the second is <code>driver.current_package</code>, which gives you the package ID of the currently running app.
 
 [Practical Example:](https://github.com/lana-20/android-activity-management/blob/main/activities_android.py)
@@ -63,7 +69,11 @@ I make sure to install the ApiDemos app at the beginning of the test. Then I wan
 
         aapt list -a ./ApiDemos.apk | grep -E "android:name.+io.appium.android.apis"
 
-Again, this just uses the <code>aapt</code> command to list out a bunch of stuff and set up a filter to catch only activity names corresponding to my app's package ID. So when I run this, I get a *ton* of output. This example app sure has a lot of activities. But let's pick two of them to test. There is one called <code>io.appium.android.apis.graphics.TouchPaint</code>. It's some kind of drawing screen. I'll define a variable to hold this activity name:
+Again, this just uses the <code>aapt</code> command to list out a bunch of stuff and set up a filter to catch only activity names corresponding to my app's package ID. So when I run this, I get a *ton* of output. 
+
+<img width="800" src="https://user-images.githubusercontent.com/70295997/223915104-9b911e28-7fdf-4057-be98-0d3a9e48ce22.png">
+
+This example app sure has a lot of activities. But let's pick two of them to test. There is one called <code>io.appium.android.apis.graphics.TouchPaint</code>. It's some kind of drawing screen. I'll define a variable to hold this activity name:
 
         app_act1 = '.graphics.TouchPaint'
 
