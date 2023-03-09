@@ -29,10 +29,68 @@ Once we've got our package and activity name, we're pretty much ready to go. We 
 1. <code>app_wait_package</code> is a parameter that tells Appium what package it should *wait* for to be active after your activity is started. The reason we have this option is that when certain activities are launched, it's possible that, totally on their own, they cause another app and/or activity to launch. If that's the case, and if you don't tell Appium, then it might stick around trying to verify that your app and activity are active, when that is no longer the case. Basically, you should just use this option if you run into an error where Appium tells you your activity never started. If so, check to see if perhaps a new app was loaded instead, and include that app's package ID here.
 2. For the same reason we have <code>app_wait_activity</code>, which is going to be used more commonly than <code>app_wait_package</code>. It tells Appium which *activity* it should wait for to be active after launching yours. Again, this is only relevant if the activity you launch somehow automatically transitions to a new activity immediately, because then Appium would think your activity never actually launched.
 3. Now we come to parameters that have to do with intents. There are three main ones: <code>intent_action</code>, <code>intent_category</code>, and <code>intent_flags</code>. These correspond to the action, category, and flag concepts that relate to intents. If you happen to know that your activity can respond to a specific intent category, or if you want to send any specific flags along with the intent, then you can use these options.
-4. 
+
 There are a couple more optional parameters you can explore in the docs, but these are the only ones you're likely to need to use.
 
 Let's talk about two other driver properties that have to do with packages and activities. The first is <code>driver.current_activity</code>, which is a property that, when retrieved, will give you the name of the currently running activity. You could use this to do different things in your script depending on where you've got to in your app, or just to use Appium itself to find out what the activity name is. And the second is <code>driver.current_package</code>, which gives you the package ID of the currently running app.
+
+Practical Example:
+
+I make sure to install the ApiDemos app at the beginning of the test. Then I want to launch the app at a specific Activity, so 'll head over to my terminal to run the command mentioned earlier to figure out what activities are available:
+
+        aapt list -a ./ApiDemos.apk | grep -E "android:name.+io.appium.android.apis"
+
+Again, this just uses the <code>aapt</code> command to list out a bunch of stuff and set up a filter to catch only activity names corresponding to my app's package ID. So when I run this, I get a *ton* of output. This example app sure has a lot of activities. But let's pick two of them to test. There is one called <code>io.appium.android.apis.graphics.TouchPaint</code>. It's some kind of drawing screen. I'll define a variable to hold this activity name:
+
+        app_act1 = '.graphics.TouchPaint'
+
+I'll call it activity 1. Notice that when I define it here, I don't actually need to include the package ID of my app, which is there in the official full name of the activity. That's because if you just start your activity name with a dot, Appium will know to add the package name of the app in front, so it saves you a bit of typing.
+
+Back to this list of activities, what else can we use? There is one called <code>.text.Marquee</code>, so let's give that a go as well:
+
+        app_act2 = '.text.Marquee'
+
+Now that we have our activities defined, let's do something with them! Immediately after installing the ApkDemos app, let's try and start the first activity:
+
+        driver.start_activity(app_id, app_act1)
+
+That's all we need to do, just include the app package ID and the activity name! Now I want to be sure I can see if this works while I'm watching the test, so I'm going to include a short static wait. Remember, the only purpose for this is so we can watch the activity load before something else happens. To perform the static wait, I'll first import the time library at the top of the file:
+
+        import time
+
+Now, I can use <code>time.sleep</code> to wait for 1 second, after my start activity command:
+
+        time.sleep(1)
+
+Let's do it again, but this time with the second activity.
+
+        driver.start_activity(app_id, app_act2)
+        time.sleep(1)
+
+And, we're done. All we're doing here is essentially launching two activities buried deep within this app. But we're launching them directly. We don't have to navigate through the app in order to get immediately to these screens. This is a powerful technique for speeding up your Android tests.
+
+Run the script to verify it works as expected. First, TheApp loads, then the new ApiDemos app is installed. Then we get to the TouchPaint activity. And after it stays up for a second, we get to the text marquee screen. 
+
+There are several use cases for these sorts of features, but one of the most important is the ability to get directly to parts of the app we want to test.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
