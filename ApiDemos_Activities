@@ -1,4 +1,4 @@
-  A: android:name(0x01010003)="io.appium.android.apis.ApiDemosApplication" (Raw: "io.appium.android.apis.ApiDemosApplication")
+A: android:name(0x01010003)="io.appium.android.apis.ApiDemosApplication" (Raw: "io.appium.android.apis.ApiDemosApplication")
   A: android:name(0x01010003)="io.appium.android.apis.ApiDemos" (Raw: "io.appium.android.apis.ApiDemos")
   A: android:name(0x01010003)="io.appium.android.apis.app.HelloWorld" (Raw: "io.appium.android.apis.app.HelloWorld")
   A: android:name(0x01010003)="io.appium.android.apis.app.DialogActivity" (Raw: "io.appium.android.apis.app.DialogActivity")
