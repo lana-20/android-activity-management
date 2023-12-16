@@ -1,4 +1,4 @@
-NOTE: The repo content has been refurbished and published as a Medium [post](...).
+NOTE: The repo content has been refurbished and published as a Medium [post](https://medium.com/@begunova/android-activity-management-with-appium-powerful-shortcut-to-mobile-automation-5252222621f9).
 
 
 # Android Activity Management
