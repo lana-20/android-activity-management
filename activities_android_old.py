@@ -1,3 +1,5 @@
+# driver.start_activity() deprecated
+
 from os import path
 from appium import webdriver
 import time
