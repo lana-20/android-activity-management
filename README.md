@@ -1,3 +1,6 @@
+NOTE: The repo content has been refurbished and published as a Medium [post](...).
+
+
 # Android Activity Management
 
 *Android apps come with a sort of subdivision that iOS apps don't, called Activities. Using Appium you can interact directly with Activities and not only apps.*
